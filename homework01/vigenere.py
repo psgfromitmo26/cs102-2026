@@ -9,22 +9,24 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
-    for i, k in enumerate(plaintext): #индекс, символ. enumerate-функция которая позволяет интегрировать plaintext в поледовательность пар
-        keypass= keyword[i%len(keyword)] # выбор буквы ключа для этого символа
+    for i, k in enumerate(
+        plaintext
+    ):  # индекс, символ. enumerate-функция которая позволяет интегрировать plaintext в поледовательность пар
+        keypass = keyword[i % len(keyword)]  # выбор буквы ключа для этого символа
         if keypass.isupper():
-            shift = ord(keypass)-ord('A')
+            shift = ord(keypass) - ord("A")
         else:
-            shift = ord(keypass)-ord('a')
+            shift = ord(keypass) - ord("a")
         if k.isupper():
-            indx=((ord(k)-ord('A'))+shift)%26
-            indx+=ord('A')
-            ciphertext+=chr(indx)
+            indx = ((ord(k) - ord("A")) + shift) % 26
+            indx += ord("A")
+            ciphertext += chr(indx)
         elif k.islower():
-            indx=(ord(k)-ord('a')+shift)%26
-            indx+=ord('a')
-            ciphertext+=chr(indx)
+            indx = (ord(k) - ord("a") + shift) % 26
+            indx += ord("a")
+            ciphertext += chr(indx)
         else:
-            ciphertext+=k
+            ciphertext += k
     return ciphertext
 
 
@@ -39,20 +41,20 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     plaintext = ""
-    for i, k in enumerate(ciphertext): 
-        keypass= keyword[i%len(keyword)] 
+    for i, k in enumerate(ciphertext):
+        keypass = keyword[i % len(keyword)]
         if keypass.isupper():
-            shift = ord(keypass)-ord('A')
+            shift = ord(keypass) - ord("A")
         else:
-            shift = ord(keypass)-ord('a')
+            shift = ord(keypass) - ord("a")
         if k.isupper():
-            indx=((ord(k)-ord('A'))-shift)%26
-            indx+=ord('A')
-            plaintext+=chr(indx)
+            indx = ((ord(k) - ord("A")) - shift) % 26
+            indx += ord("A")
+            plaintext += chr(indx)
         elif k.islower():
-            indx=(ord(k)-ord('a')-shift)%26
-            indx+=ord('a')
-            plaintext+=chr(indx)
+            indx = (ord(k) - ord("a") - shift) % 26
+            indx += ord("a")
+            plaintext += chr(indx)
         else:
-            plaintext+=k   
+            plaintext += k
     return plaintext
